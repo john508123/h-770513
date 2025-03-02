@@ -1,3 +1,4 @@
+
 const blogPosts = [
   {
     title: "A dynamic bank offers a few fresh moves",
@@ -7,7 +8,7 @@ const blogPosts = [
   },
   {
     title: "The simple economy goes global",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c",
+    image: "/lovable-uploads/69bd4d22-1819-4ba0-b712-b17bdfc2acf9.png",
     date: "Mar 15, 2024",
     readTime: "3 min read"
   },

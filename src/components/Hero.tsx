@@ -1,3 +1,4 @@
+
 import { ArrowRight } from "lucide-react";
 
 const Hero = () => {
@@ -22,8 +23,8 @@ const Hero = () => {
       </div>
       <div className="mt-16 glass-card rounded-xl p-4 max-w-4xl mx-auto animate-float">
         <img 
-          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f"
-          alt="Dashboard Preview"
+          src="/lovable-uploads/69bd4d22-1819-4ba0-b712-b17bdfc2acf9.png"
+          alt="Lovable Dev Preview"
           className="rounded-lg w-full"
         />
       </div>
