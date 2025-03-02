@@ -2,6 +2,7 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Quote } from "lucide-react";
+import { useState } from "react";
 
 const stories = [
   {
@@ -39,6 +40,25 @@ const stories = [
 ];
 
 const SuccessStories = () => {
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
+
+  const handleImageError = (id: string) => {
+    setImageErrors(prev => ({
+      ...prev,
+      [id]: true
+    }));
+  };
+
+  const getFallbackImage = (type: string) => {
+    if (type === 'profile') {
+      return "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=300&h=300&fit=crop";
+    } else if (type === 'before') {
+      return "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&h=400&fit=crop";
+    } else {
+      return "https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=300&h=400&fit=crop";
+    }
+  };
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -59,9 +79,10 @@ const SuccessStories = () => {
                 <div className="glass-card p-8 rounded-xl mb-12">
                   <div className="flex flex-col md:flex-row gap-6 items-start md:items-center mb-6">
                     <img 
-                      src={story.image} 
+                      src={imageErrors[`profile-${index}`] ? getFallbackImage('profile') : story.image} 
                       alt={story.name} 
                       className="w-24 h-24 rounded-full object-cover"
+                      onError={() => handleImageError(`profile-${index}`)}
                     />
                     <div>
                       <h2 className="text-2xl font-bold">{story.name}</h2>
@@ -81,13 +102,23 @@ const SuccessStories = () => {
                   <div className="text-center">
                     <p className="text-lg font-semibold mb-3">Before</p>
                     <div className="rounded-xl overflow-hidden shadow-lg">
-                      <img src={story.before} alt={`${story.name} before`} className="w-full h-[400px] object-cover" />
+                      <img 
+                        src={imageErrors[`before-${index}`] ? getFallbackImage('before') : story.before} 
+                        alt={`${story.name} before`} 
+                        className="w-full h-[400px] object-cover"
+                        onError={() => handleImageError(`before-${index}`)}
+                      />
                     </div>
                   </div>
                   <div className="text-center">
                     <p className="text-lg font-semibold mb-3">After</p>
                     <div className="rounded-xl overflow-hidden shadow-lg">
-                      <img src={story.after} alt={`${story.name} after`} className="w-full h-[400px] object-cover" />
+                      <img 
+                        src={imageErrors[`after-${index}`] ? getFallbackImage('after') : story.after} 
+                        alt={`${story.name} after`} 
+                        className="w-full h-[400px] object-cover"
+                        onError={() => handleImageError(`after-${index}`)}
+                      />
                     </div>
                   </div>
                 </div>
